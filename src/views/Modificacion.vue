@@ -1,47 +1,43 @@
 <template>
 <v-card>
-
     <v-form v-model="valid">
       <v-container>
         <v-row>
-          <v-col
-            cols="12"
-            md="4"
+            <v-col
+            cols="6"
+            md="6"
           >
             <v-text-field
               v-model="firstname"
               :rules="nameRules"
-              :counter="10"
-              label="First name"
+              :counter="30"
+              label="Nombre"
               required
             ></v-text-field>
-          </v-col>
+            </v-col>
   
-          <v-col
-            cols="12"
-            md="4"
+        
+            <v-col
+            cols="6"
+            md="6"
           >
             <v-text-field
               v-model="lastname"
               :rules="nameRules"
-              :counter="10"
-              label="Last name"
-              required
-            ></v-text-field>
-          </v-col>
-  
-          <v-col
-            cols="12"
-            md="4"
-          >
-            <v-text-field
-              v-model="email"
-              :rules="emailRules"
-              label="E-mail"
+              :counter="20"
+              label="Apellido"
               required
             ></v-text-field>
           </v-col>
         </v-row>
+        <v-row>
+            <v-col
+              cols="12"
+              md="4"
+            >
+              <InputFecha/>
+            </v-col>
+        </v-row>  
       </v-container>
     </v-form>
 </v-card>
@@ -49,7 +45,13 @@
 
 
 <script>
-  export default {
+
+import InputFecha from '@/components/inputs/InputFecha.vue'
+
+export default {
+    components:{
+        InputFecha,
+    },
     data: () => ({
       valid: false,
       firstname: '',
