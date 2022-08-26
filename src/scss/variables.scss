@@ -1,0 +1,59 @@
+// Globals
+$body-font-family: 'Arial', sans-serif;
+$border-radius-root: 0.25rem;
+$font-size-root: 1rem;
+$borders: #d1d0d0;
+
+$fab-icon-sizes: (
+  'small': 20
+  );
+$btn-sizes: (
+  'x-small': 28,
+  'small': 28,
+  'default': 28,
+  'large': 28,
+  'x-large': 28
+  );
+
+$material-light: (
+  'background': #dedede,
+  'inputs': (
+    'box': $borders
+    ),
+  'text-fields': (
+    'filled': $borders,
+    'filled-hover': $borders,
+    'outlined': $borders,
+    'outlined-disabled': $borders,
+    'outlined-hover': $borders
+    ),
+  );
+
+// Variables must come before the import
+$btn-letter-spacing: 2;
+$btn-font-weight: 400;
+
+//Header Panel collapse
+$expansion-panel-header-font-size: .85rem;
+$expansion-panel-header-min-height: .3rem; //cuando esta cerrado
+$expansion-panel-active-header-min-height: .3rem; //cuando esta abirto
+$expansion-panel-header-padding: 0.6rem 0.8rem;
+
+//Content Panel collapse
+$expansion-panel-content-padding: 0rem;
+
+
+//Grids
+$data-table-dense-header-height: 2rem;
+$data-table-dense-row-height: $data-table-dense-header-height;
+
+//Toolbars
+$toolbar-elevation: 0;
+$toolbar-prominent-padding: 0;
+$toolbar-title-padding: 0;
+$toolbar-content-padding-y: 0;
+
+//Input-text
+$input-top-spacing: 0;
+$text-field-border-radius: 0rem;
+$text-field-filled-full-width-outlined-dense-slot-min-height: .5rem;

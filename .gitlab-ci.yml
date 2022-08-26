@@ -1,0 +1,42 @@
+image: docker:19.03.13
+
+stages:
+  - test
+  - production
+
+variables:
+  TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
+  TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+
+before_script:  
+  - apk update && apk add openssh-client
+
+paso_a_testing:
+  stage: test
+  script:
+  - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u gitlab-ci-token --password-stdin
+  - docker build --build-arg URL="https://apps-caja-testing.cajapsipba.org.ar" --build-arg STAGE="staging" -t $TAG_LATEST . --no-cache
+  - docker push $TAG_LATEST
+  - chmod og= $ID_RSA_TEST
+  - ssh -i $ID_RSA_TEST -o StrictHostKeyChecking=no $SERVER_USER_TEST@$SERVER_IP_TEST "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
+  - ssh -i $ID_RSA_TEST -o StrictHostKeyChecking=no $SERVER_USER_TEST@$SERVER_IP_TEST "docker pull $TAG_LATEST"
+  - ssh -i $ID_RSA_TEST -o StrictHostKeyChecking=no $SERVER_USER_TEST@$SERVER_IP_TEST "docker container rm -f $CI_PROJECT_NAME || true"
+  - ssh -i $ID_RSA_TEST -o StrictHostKeyChecking=no $SERVER_USER_TEST@$SERVER_IP_TEST "docker run --net=red-interna -d --restart unless-stopped -e SERVER_NAME="apps-caja-testing.cajapsipba.org.ar" --name $CI_PROJECT_NAME $TAG_LATEST"
+  # - ssh -i $ID_RSA_TEST -o StrictHostKeyChecking=no $SERVER_USER_TEST@$SERVER_IP_TEST "docker run -v "proyectos:/usr/share/nginx/html" -w /usr/share/nginx/html --net=red-interna -d --restart unless-stopped -e SERVER_NAME="apps-caja-testing.cajapsipba.org.ar" --name $CI_PROJECT_NAME $TAG_LATEST"
+  only:
+    - test
+
+paso_a_produccion:
+  stage: production
+  script:
+  - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u gitlab-ci-token --password-stdin
+  - docker build --build-arg URL="https://apps-caja.cajapsipba.org.ar" --build-arg STAGE="prod" -t $TAG_COMMIT -t $TAG_LATEST . --no-cache
+  - docker push $TAG_COMMIT
+  - docker push $TAG_LATEST
+  - chmod og= $ID_RSA
+  - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
+  - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_COMMIT"
+  - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f $CI_PROJECT_NAME || true"
+  - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run --net=red-interna -d --restart unless-stopped -e SERVER_NAME="emergenciasmedicas.cajapsipba.org.ar" --name $CI_PROJECT_NAME $TAG_COMMIT"
+  only:
+    - master
