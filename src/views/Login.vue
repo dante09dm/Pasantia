@@ -8,7 +8,7 @@
                 <v-spacer></v-spacer>
                 <div class="pa-10">
                     <v-form v-model="valid" @submit.prevent="login">
-                        <v-text-field v-model="email" label="Email" />
+                        <v-text-field ref="emailFocus" v-model="email" label="Email" />
                         <v-text-field v-model="password" type="current-password" :value="password" label="Contraseña"
                             :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'" @click:append="() => (value = !value)"
                             :type="value ? 'password' : 'text'" :rules="[rules.password]" @input="_ => password = _">
@@ -54,6 +54,9 @@ export default {
             }
         },
     }),
+    mounted() {
+        this.$refs.emailFocus.focus();
+    },
 
     mutations: {
         /*   

@@ -14,9 +14,9 @@ var url = serve + '/api/login';
 
 export default new Vuex.Store({
   state: {
-    token: '',
     email: '',
     password: '',
+    token: '',
   },
   mutations: {
   },
