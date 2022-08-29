@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-
+/*
 var config = {
   headers: {
     "Content-Type": "aplication/json"
@@ -10,6 +10,7 @@ var config = {
 }
 var serve = process.env.ENDPOINT_PATH;
 var url = serve + '/api/login';
+*/
 
 export default new Vuex.Store({
   state: {

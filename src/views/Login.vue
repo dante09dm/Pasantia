@@ -31,8 +31,6 @@
 
 <script>
 
-import store from "../store/index.js";
-
 export default {
     name: 'Login',
 
@@ -58,6 +56,7 @@ export default {
     }),
 
     mutations: {
+        /*   
         async login() {
             try {
                 await store.login(this.email, this.password);
@@ -68,7 +67,7 @@ export default {
             console.log(this.email);
             console.log(this.password);
         }
-        /*         process() {
+              process() {
                     this.$v.$touch();
                     if (this.$v.$invalid) {
                         return false;

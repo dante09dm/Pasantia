@@ -1,8 +1,7 @@
 <template>
   <v-app>
-      <Toolbar/>
-
-<!--     <v-navigation-drawer v-model="drawer" absolute temporary>
+    <Toolbar />
+<!--      <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list-item>
         <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
@@ -46,25 +45,25 @@ export default {
   components: {
     Toolbar,
   },
-  /*   beforeCreate() {
-  
-      // adan 05/08/22
-      // forzamos el dominio para no tenere problemas con el CORS
-      document.domain = 'cajapsipba.org.ar';
-  
-      var usuario = window.location.search.substr(1).split("=");
-      var vue = this;
-  
-      var serve = process.env.VUE_APP_PDF;
-      var url = serve + 'api/api_usuario.php/usuario/' + usuario[1];
-  
-      $.ajax({
-        url: url,
-        type: 'GET',
-        success: function (response) {
-          vue.$store.usuario = response.body;
-        }
-      });
-    } */
+  beforeCreate() {
+
+    // adan 05/08/22
+    // forzamos el dominio para no tenere problemas con el CORS
+/*     document.domain = 'cajapsipba.org.ar';
+
+    var usuario = window.location.search.substr(1).split("=");
+    var vue = this;
+
+    var serve = process.env.VUE_APP_PDF;
+    var url = serve + 'api/api_usuario.php/usuario/' + usuario[1];
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function (response) {
+        vue.$store.usuario = response.body;
+      }
+    }); */
+  }
 };
 </script>
