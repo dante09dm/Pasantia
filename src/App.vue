@@ -13,14 +13,14 @@
 
 <script>
 import Toolbar from '@/components/toolbars/Toolbar.vue'
-import Drawer from '@/components/toolbars/Drawer.vue'
+
 
 export default {
   name: 'App',
 
   components: {
     Toolbar,
-    Drawer,
+
   },
   beforeCreate() {
 

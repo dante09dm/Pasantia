@@ -59,7 +59,7 @@ export default {
     },
 
     mutations: {
-        /*   
+
         async login() {
             try {
                 await store.login(this.email, this.password);
@@ -69,7 +69,7 @@ export default {
             }
             console.log(this.email);
             console.log(this.password);
-        }
+        },
               process() {
                     this.$v.$touch();
                     if (this.$v.$invalid) {
@@ -92,7 +92,7 @@ export default {
                         .catch((error) => {
                             console.log(error);
                         });
-                } */
+                } 
     },
 }
 </script>
