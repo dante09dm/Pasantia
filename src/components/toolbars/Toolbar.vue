@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar max-height="50" elevation="3">
+    <v-toolbar max-height="60" elevation="3">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Portal de afiliados</v-toolbar-title>
       <v-spacer></v-spacer>
