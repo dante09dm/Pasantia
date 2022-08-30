@@ -7,9 +7,9 @@
                 </div>
                 <v-spacer></v-spacer>
                 <div class="pa-10">
-                    <v-form v-model="valid" @submit.prevent="login">
-                        <v-text-field ref="emailFocus" v-model="email" label="Email" />
-                        <v-text-field v-model="password" type="current-password" :value="password" label="Contraseña"
+                    <v-form v-model="valid" @submit.prevent="login()">
+                        <v-text-field ref="emailFocus" v-model="userLog.email" label="Email" />
+                        <v-text-field v-model="userLog.password" type="password" :value="userLog.password" label="Contraseña"
                             :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'" @click:append="() => (value = !value)"
                             :type="value ? 'password' : 'text'" :rules="[rules.password]" @input="_ => password = _">
                         </v-text-field>
@@ -36,8 +36,10 @@ export default {
 
     data: () =>
     ({
-        email: '',
-        password: '',
+        userLog: {
+            email: '',
+            password: '',
+        },
         error: false,
 
         valid: true,
@@ -54,45 +56,30 @@ export default {
             }
         },
     }),
+    create() {
+        const token = localStorage.getItem("token");
+        if (token) {
+            this.setToken(token);
+        }
+    },
     mounted() {
         this.$refs.emailFocus.focus();
     },
+    login() {
+    },
 
     mutations: {
-
-        async login() {
-            try {
-                await store.login(this.email, this.password);
-                this.$router.push('dashboard')
-            } catch (error) {
-                this.error = true;
-            }
-            console.log(this.email);
-            console.log(this.password);
-        },
-              process() {
-                    this.$v.$touch();
-                    if (this.$v.$invalid) {
-                        return false;
-                    }
-                    var config = {
-                        headers: {
-                            "Content-Type": "aplication/json"
-                        }
-                    }
-                    var serve = process.env.VUE_APP_PDF;
-                    var url = serve + 'login/user';
-                    axios
-                        .post(url, this.user, config)
-                        .then((response) => {
-                            if (response.status == 200) {
-                                console.log(response)
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                } 
     },
 }
 </script>
+<!--         axios
+        .post(url, this.user, config)
+        .then((response) => {
+            if (response.status == 200) {
+                console.log(response)
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}  -->

@@ -3,8 +3,6 @@
         <v-card>
             <v-card-title>Modificacion de datos</v-card-title>
             <v-divider></v-divider>
-            
-            
             <div class="ma-10 pa-10">
                 <v-form v-model="valid">
                     <v-row>

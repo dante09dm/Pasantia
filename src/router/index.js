@@ -12,7 +12,7 @@ Vue.use(VueRouter)
 const routes = [
 
   {
-    path: '/Login',
+    path: '*',
     name:'Login',
     component: Login
   },
@@ -54,12 +54,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-/*
+
  router.beforeEach((to, from, next) => {
   //Cuando un usuario no esta logeado solo tendra acceso a las publicPages
-  const publicPages = ['/login'];
+  const publicPages = ['/login', '/modificacion'];
   const authRequired = ! publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
+//  const loggedIn = localStorage.getItem('user');
 
   if (authRequired && !loggedIn){
     return next('/login');
@@ -68,5 +68,5 @@ const router = new VueRouter({
   next();
 
 })
-*/
+
 export default router

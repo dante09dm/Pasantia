@@ -14,7 +14,6 @@
 <script>
 import Toolbar from '@/components/toolbars/Toolbar.vue'
 
-
 export default {
   name: 'App',
 
@@ -41,6 +40,7 @@ export default {
         vue.$store.usuario = response.body;
       }
     }); */
-  }
+  },
+
 };
 </script>

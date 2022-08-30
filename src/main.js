@@ -13,6 +13,12 @@ axios.defaults.withCredentials = true
 axios.defaults.headers['Content-Type']='aplication/json';
 // axios.defaults.headers['Authorization']=$store.get;
 
+//Emanuel 30/08/22
+var token = JSON.parse(localStorage.getItem('token'));
+if(token){
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+}
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 

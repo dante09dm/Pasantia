@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+/*
+Mail y contraseña para test
+de login correcto
 
+eve.holt@reqres.in
+cityslicka
+*/
 Vue.use(Vuex)
 /*
 var config = {
@@ -14,11 +20,21 @@ var url = serve + '/api/login';
 
 export default new Vuex.Store({
   state: {
-    email: '',
-    password: '',
-    token: '',
+    token: null,
+  },
+  getters: {
+    isAuthenticated(state){
+      return state.token != null;
+    }
   },
   mutations: {
+    setToken(state, payload){
+      state.token = payload;
+    },
+    clearToken(state){
+      state.token = null;
+      localStorage.removeItem("token");
+    },
   },
   actions: {
   },
