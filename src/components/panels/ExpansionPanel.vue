@@ -35,6 +35,7 @@
   import FormCategorias from '@/components/forms/FormCategorias.vue'
   export default {
     name: 'ExpansionPanel',
+    
     components:{
       GridTipoSencha,
       GridEM,

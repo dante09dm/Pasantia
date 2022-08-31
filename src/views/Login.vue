@@ -7,15 +7,16 @@
                 </div>
                 <v-spacer></v-spacer>
                 <div class="pa-10">
-                    <v-form v-model="valid" @submit.prevent="login()">
+                    <v-form v-model="valid" @submit.prevent="almacenarLocal">
                         <v-text-field ref="emailFocus" v-model="userLog.email" label="Email" />
-                        <v-text-field v-model="userLog.password" type="password" :value="userLog.password" label="Contraseña"
-                            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'" @click:append="() => (value = !value)"
-                            :type="value ? 'password' : 'text'" :rules="[rules.password]" @input="_ => password = _">
+                        <v-text-field v-model="userLog.password" type="password" :value="userLog.password"
+                            label="Contraseña" :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                            @click:append="() => (value = !value)" :type="value ? 'password' : 'text'"
+                            :rules="[rules.password]" @input="_ => password = _">
                         </v-text-field>
                     </v-form>
                     <div class="pt-2">
-                        <v-btn type="submit" block elevation="2" color="primary">Acceder</v-btn>
+                        <v-btn type="submit"  block elevation="2" color="primary">Acceder</v-btn>
                     </div>
                 </div>
                 <v-divider></v-divider>
@@ -30,6 +31,7 @@
 </template>
 
 <script>
+
 
 export default {
     name: 'Login',
@@ -57,7 +59,7 @@ export default {
         },
     }),
     create() {
-        const token = localStorage.getItem("token");
+        var token = localStorage.getItem("token");
         if (token) {
             this.setToken(token);
         }
@@ -65,21 +67,13 @@ export default {
     mounted() {
         this.$refs.emailFocus.focus();
     },
-    login() {
-    },
 
-    mutations: {
-    },
+    methods: {
+       almacenarLocal(){
+            var user = localStorage.setItem(userLog);
+            console.log(user)
+       }
+
+    }
 }
 </script>
-<!--         axios
-        .post(url, this.user, config)
-        .then((response) => {
-            if (response.status == 200) {
-                console.log(response)
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}  -->

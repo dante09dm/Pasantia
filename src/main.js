@@ -15,6 +15,7 @@ axios.defaults.headers['Content-Type']='aplication/json';
 
 //Emanuel 30/08/22
 var token = JSON.parse(localStorage.getItem('token'));
+var url = process.env.ENDPOINT_PATH + '/login';
 if(token){
   window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 }

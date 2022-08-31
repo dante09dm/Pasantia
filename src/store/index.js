@@ -7,25 +7,17 @@ de login correcto
 eve.holt@reqres.in
 cityslicka
 */
+  
 Vue.use(Vuex)
-/*
-var config = {
-  headers: {
-    "Content-Type": "aplication/json"
-  }
-}
-var serve = process.env.ENDPOINT_PATH;
-var url = serve + '/api/login';
-*/
 
 export default new Vuex.Store({
   state: {
     token: null,
   },
   getters: {
-    isAuthenticated(state){
-      return state.token != null;
-    }
+      isAuthenticated(state){
+        return state.token != null;
+      }
   },
   mutations: {
     setToken(state, payload){
