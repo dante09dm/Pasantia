@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import afiliados from './afiliados'
 /*
 Mail y contraseña para test
 de login correcto
@@ -11,8 +12,10 @@ cityslicka
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   state: {
     token: null,
+    authUser: false,
   },
   getters: {
       isAuthenticated(state){
@@ -23,14 +26,33 @@ export default new Vuex.Store({
     setToken(state, payload){
       state.token = payload;
     },
+    setAuthUser(state){
+      state.authUser = payload
+    },
+
+    
+    /*     
+    El siguiente metodo es solo 
+    para probar la autenticacion sin
+    necesidad de token 
+    */
+    changeAuthUser(state){
+      state.authUser = !state.authUser
+    },
+
+
+
     clearToken(state){
       state.token = null;
       localStorage.removeItem("token");
     },
   },
   actions: {
+    //llamada asincronica a API
+
   },
   modules: {
+    afiliados,
   },
   /*
    

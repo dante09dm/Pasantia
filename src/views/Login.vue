@@ -7,16 +7,17 @@
                 </div>
                 <v-spacer></v-spacer>
                 <div class="pa-10">
-                    <v-form v-model="valid" @submit.prevent="almacenarLocal">
-                        <v-text-field ref="emailFocus" v-model="userLog.email" label="Email" />
-                        <v-text-field v-model="userLog.password" type="password" :value="userLog.password"
+                    <v-form v-model="valid">
+                        <v-text-field outlined ref="emailFocus" v-model="user" label="Usuario" />
+                        <v-text-field outlined v-model="password" :value="password"
                             label="Contraseña" :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                            @click:append="() => (value = !value)" :type="value ? 'password' : 'text'"
+                            @click:append="value = !value"
+                            :type=" value ? 'password' : 'text' "
                             :rules="[rules.password]" @input="_ => password = _">
                         </v-text-field>
                     </v-form>
                     <div class="pt-2">
-                        <v-btn type="submit"  block elevation="2" color="primary">Acceder</v-btn>
+                        <v-btn dark type="submit" @click="persist" block elevation="2" color="primary">Acceder</v-btn>
                     </div>
                 </div>
                 <v-divider></v-divider>
@@ -31,6 +32,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import store from '../store';
 
 
 export default {
@@ -38,10 +41,9 @@ export default {
 
     data: () =>
     ({
-        userLog: {
-            email: '',
-            password: '',
-        },
+       
+        user: '',
+        password: '',
         error: false,
 
         valid: true,
@@ -59,21 +61,33 @@ export default {
         },
     }),
     create() {
-        var token = localStorage.getItem("token");
-        if (token) {
-            this.setToken(token);
-        }
+
     },
     mounted() {
         this.$refs.emailFocus.focus();
+        if (localStorage.user){
+            this.user = localStorage.user;
+        } 
+        if (localStorage.password){
+            this.password = localStorage.password;
+        }
+    },
+    computed: mapState(['authUser']),
+    watch: {
+
     },
 
     methods: {
-       almacenarLocal(){
-            var user = localStorage.setItem(userLog);
-            console.log(user)
-       }
-
+        persist() {
+            localStorage.user = this.user;
+            localStorage.password = this.password;
+            if (localStorage.user  == "Emanuel" && localStorage.password == "donato"){
+                store.commit('changeAuthUser')
+                console.log(store.state.authUser)
+                this.$router.push('/dashboard')
+            };
+        }
     }
+    
 }
 </script>
