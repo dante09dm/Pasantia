@@ -61,7 +61,7 @@ const router = new VueRouter({
   routes
 })
 
- router.beforeEach((to, from, next) => {
+/*  router.beforeEach((to, from, next) => {
   //Cuando un usuario no esta logeado solo tendra acceso a las publicPages
   const publicPages = ['login'];
   const authRequired =  publicPages.includes(to.path);
@@ -72,6 +72,6 @@ const router = new VueRouter({
 
   next();
 
-})
+}) */
 
 export default router

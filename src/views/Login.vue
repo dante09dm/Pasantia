@@ -1,47 +1,49 @@
 <template>
-    <v-container fluid>
-        <v-layout align-center justify-center>
-            <v-card width="500" elevation="2">
-                <div align="center" valign="center">
-                    <v-img class="ma-7" max-heigth="85" max-width="288" src="../assets/logo_caja_nuevo.png" />
-                </div>
-                <v-spacer></v-spacer>
-                <div class="pa-10">
-                    <v-form v-model="valid">
-                        <v-text-field outlined ref="emailFocus" v-model="user" label="Usuario" />
-                        <v-text-field outlined v-model="password" :value="password"
-                            label="Contraseña" :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                            @click:append="value = !value"
-                            :type=" value ? 'password' : 'text' "
-                            :rules="[rules.password]" @input="_ => password = _">
-                        </v-text-field>
-                    </v-form>
-                    <div class="pt-2">
-                        <v-btn dark type="submit" @click="persist" block elevation="2" color="primary">Acceder</v-btn>
-                    </div>
-                </div>
-                <v-divider></v-divider>
-                <v-card-actions class="pa-1">
-                    <v-card-text>
-                        Olvidó su <a>Contraseña?</a>
-                    </v-card-text>
-                </v-card-actions>
-            </v-card>
-        </v-layout>
-    </v-container>
+    <div>
+        <v-container >
+            <v-row>
+                <v-col cols="12" lg="12" md="12" >
+                    <v-card class="mx-auto mt-10" max-width="900" elevation="2">
+                        <v-container>
+                            <v-row>
+                                <v-col class="d-flex aling-center justify-center">
+                                    <v-img min-width="250" class="ma-5" max-width="250" src="../assets/logo_caja_nuevo.png" />
+                                </v-col>
+                            </v-row>
+                        </v-container>
+    
+                        <v-form class="ma-5 pa-5" v-model="valid" @submit.prevent="almacenarLocal">
+                            <v-text-field  ref="userFocus" v-model="user" label="Usuario" />
+                            <v-text-field class="mt-2"  v-model="password" :value="password" label="Contraseña"
+                                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'" @click:append="value = !value"
+                                :type=" value ? 'password' : 'text' " :rules="[rules.password]" @input="_ => password = _">
+                            </v-text-field>
+                        </v-form>
+                        <div class="ma-8">
+                            <v-btn type="submit" @click="persist" block elevation="2" color="primary">Acceder</v-btn>
+                        </div>
+                        
+                        <v-card-actions>
+                            <v-card-text>
+                                Olvidó su <a>Contraseña?</a>
+                            </v-card-text>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>
 </template>
 
+
 <script>
-import { mapState } from 'vuex';
-import store from '../store';
-
-
+import store from "../store";
 export default {
     name: 'Login',
 
     data: () =>
     ({
-       
+
         user: '',
         password: '',
         error: false,
@@ -60,20 +62,19 @@ export default {
             }
         },
     }),
-    create() {
+    beforeCreate() {
 
     },
     mounted() {
-        this.$refs.emailFocus.focus();
-        if (localStorage.user){
+        this.$refs.userFocus.focus();
+        if (localStorage.user) {
             this.user = localStorage.user;
-        } 
-        if (localStorage.password){
+        }
+        if (localStorage.password) {
             this.password = localStorage.password;
         }
     },
-    computed: mapState(['authUser']),
-    watch: {
+    computed: {
 
     },
 
@@ -81,13 +82,14 @@ export default {
         persist() {
             localStorage.user = this.user;
             localStorage.password = this.password;
-            if (localStorage.user  == "Emanuel" && localStorage.password == "donato"){
+            if (localStorage.user == "Emanuel" && localStorage.password == "donato") {
                 store.commit('changeAuthUser')
-                console.log(store.state.authUser)
-                this.$router.push('/dashboard')
+                this.$router.push('/modificacion')
+            } else {
+                this.$router.push('/login')
             };
-        }
+        },
     }
-    
+
 }
 </script>

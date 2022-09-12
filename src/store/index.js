@@ -1,58 +1,71 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import afiliados from './afiliados'
-/*
-Mail y contraseña para test
-de login correcto
 
-eve.holt@reqres.in
-cityslicka
-*/
-  
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 
   state: {
     token: null,
+    users: [],
     authUser: false,
   },
   getters: {
-      isAuthenticated(state){
-        return state.token != null;
-      }
+    isAuthenticated(state) {
+      return state.token != null;
+    },
+
+    users(state) {
+      return state.users;
+    }
   },
   mutations: {
-    setToken(state, payload){
+    setToken(state, payload) {
       state.token = payload;
     },
-    setAuthUser(state){
+    setAuthUser(state, payload) {
       state.authUser = payload
     },
-
-    
-    /*     
-    El siguiente metodo es solo 
-    para probar la autenticacion sin
-    necesidad de token 
-    */
-    changeAuthUser(state){
-      state.authUser = !state.authUser
+    setUser(state, payload){
+      state.users = payload;
     },
-
-
-
-    clearToken(state){
+    logout() {
+      localStorage.removeItem('token')
+      this.$router.push('/login')
+    },
+ 
+    clearToken(state) {
       state.token = null;
       localStorage.removeItem("token");
     },
-  },
-  actions: {
-    //llamada asincronica a API
+    /*     
+    El siguiente metodo es para
+    probar la autenticacion sin
+    necesidad de token
+    (borrar al implementar jwt) 
+    */
+    changeAuthUser(state) {
+      state.authUser = !state.authUser;
+    },
+
 
   },
+  //llamada asincronica a API
+  actions: {
+    cargaUser: async function ({ commit }) {
+      try {
+        const response = await axios
+          .get("https://my-json-server.typicode.com/Emanuelm26/HomeSwitchHome/data")
+          .then(response => (this.users = response))
+          .catch(error => console.log(error))
+          commit('setUsers', users)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  },
   modules: {
-    afiliados,
+
   },
   /*
    
@@ -83,23 +96,5 @@ export default new Vuex.Store({
       location.reload()
   
       */
-    
-          //cuando tenga acceso a la API 
-          /*     
-           async login({ commit }, user) {
-             try {
-               const res = await fetch('http://api', {
-                 methods: 'POST',
-                 headers: { 'Content-Type': 'aplication/json' },
-                 body: JSON.stringify(user)
-               })
-               const userDB = await res.json()
-               commit('setToken', userDB.data.token)
-               localStorage.setItem('token', userDB.data.token)
-             } catch (error) {
-               console.log('Error: ', error)
-             }
-           }
-          */
 
-  });
+});

@@ -8,7 +8,7 @@ export default ({
     namespaced: true,
 
     state: {
-        Items: '',
+        Items: [],
     },
     getters: {
         Items(state) {

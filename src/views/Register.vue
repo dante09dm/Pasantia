@@ -1,18 +1,25 @@
 <template>
-    <v-card>
-        <v-card-title>
-            <h4>
-                {{ $store.state }}
-            </h4>
-        </v-card-title>
+    <v-row>
+        <v-col>
+            <v-card class="mt-10">
+                
+                <v-card-title>
+                    <h4>
+                        {{$store.state}}
+                    </h4>
+                </v-card-title>
+            </v-card>
+        </v-col>
+    </v-row>
 
-    </v-card>
+                
+
 </template>
 
 
 <script>
 
-import axios from 'axios'
+
 
 export default {
     components: {
@@ -21,14 +28,10 @@ export default {
 
     data() {
         return {
-            info: null,
+
         }
     },
     mounted() {
-        axios
-            .get("https://my-json-server.typicode.com/Emanuelm26/HomeSwitchHome/data")
-            .then(response => (this.info = response.data[1]))
-            .catch(error => console.log(error))
 
     },
     created() {

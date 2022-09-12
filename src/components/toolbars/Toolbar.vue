@@ -1,16 +1,19 @@
 <template>
   <div>
-    <v-toolbar dark color="#00a0df" elevation="4">
+    <v-app-bar app
+      dark
+      color="primary">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon v-if="$store.state.authUser">
         <v-icon>mdi-export</v-icon>
       </v-btn>
-    </v-toolbar>
+
+    </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list-item class="px-2">
         <v-list-item-avatar>
-          <v-img :src="$store.state.afiliados.Items[2].avatar"></v-img>
+          <v-img ></v-img>
         </v-list-item-avatar>
       </v-list-item>
       <v-divider></v-divider>
@@ -18,7 +21,7 @@
         <v-list-item-content>
           <v-list-item-title class="text-h6">
           </v-list-item-title>
-          <v-list-item-subtitle> {{ $store.state.afiliados.Items[2].email  }} </v-list-item-subtitle>
+          <v-list-item-subtitle> {{   }} </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-list nav dense>
@@ -33,7 +36,7 @@
       </v-list>
       <template v-if="$store.state.authUser" v-slot:append>
         <div class="ma-2">
-          <v-btn block elevation="2" @click="changeAuthUser" color="secondary">
+          <v-btn block elevation="2" @click="changeAuthUser()" color="secondary">
             CERRAR SESION
           </v-btn>
         </div>
@@ -43,10 +46,13 @@
 </template>
 
 <script>
-
+import { mapMutations, mapState } from 'vuex';
 
 export default {
   components: {
+  },
+  methods:{
+    ...mapState(['authUser'])
   },
 
   data() {
@@ -63,7 +69,7 @@ export default {
   },
   create() {
   },
-  
+
 }
 
 </script>
