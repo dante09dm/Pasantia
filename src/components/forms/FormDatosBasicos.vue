@@ -1,58 +1,52 @@
 <template v-slot="FormBasic">
-                <div class="mt-0 pa-5">
-                    <v-form v-model="valid">
-                        <v-row>
-                            <v-col cols="12" md="4">
-                                <v-sheet class="pa-5">
-                                    <v-switch v-model="enable" color="info"
-                                    :label=" !enable ? `PRESIONE PARA MODIFICAR` : `MODIFICACION ACTIVADA` "></v-switch>
-                                </v-sheet>
-                            </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="12" md="4">
-                                <p class="font-weight-bold">
-                                    INFORMACION PERSONAL
-                                </p>
-                    </v-col>
+    <div class="mt-0 pa-5">
+        <v-form v-model="valid">
+            <v-row>
+                <v-avatar class="ma-5" size="130">
+                        <img alt="afiliado" :src="user.avatar" >
+                    </v-avatar>
+                <v-sheet v-if="isAuthenticated" class="pa-5">
+                    <v-switch v-model="enable" color="info"
+                        :label=" !enable ? `PRESIONE PARA MODIFICAR` : `MODIFICACION ACTIVADA` "></v-switch>
+                </v-sheet>
             </v-row>
             <v-row>
                 <v-col cols="12" md="4">
-                    <v-text-field v-model="firstname" :rules="nameRules" :counter="35" label="Nombre" required
-                    :disabled="!enable">
-                </v-text-field>
+                    <v-text-field v-model="user.first_name" :rules="nameRules" :counter="35" label="Nombre" required
+                        :disabled="!enable">
+                    </v-text-field>
                 </v-col>
                 <v-col cols="12" md="5">
-                    <v-text-field v-model="lastname" :rules="lastnameRules" :counter="35" label="Apellido" required
-                    :disabled="!enable">
-                </v-text-field>
-            </v-col>
-            <v-col cols="3" md="1">
-                <v-select :items="items_tipo" label="Tipo Doc." :disabled="!enable"></v-select>
-            </v-col>
-            <v-col cols="9" md="2">
-                <v-text-field ref="dniNumber" type="number" label="Nro." required :disabled="!enable">
-                </v-text-field>
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col cols="12" md="2">
-                <DatePicker text="Fecha de nacimiento" />
-            </v-col>
-            <v-col cols="12" md="2">
-                <v-select :items="items_nac" label="Nacionalidad"></v-select>
+                    <v-text-field v-model="user.last_name" :rules="lastnameRules" :counter="35" label="Apellido" required
+                        :disabled="!enable">
+                    </v-text-field>
+                </v-col>
+                <v-col cols="3" md="1">
+                    <v-select v-model="user.type_dni" :items="items_tipo" label="Tipo Doc." :disabled="!enable"></v-select>
+                </v-col>
+                <v-col cols="9" md="2">
+                    <v-text-field v-model="user.id_number" ref="dniNumber" type="number" label="Nro." required :disabled="!enable">
+                    </v-text-field>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12" md="2">
+                    <DatePicker text="Fecha de nacimiento" />
+                </v-col>
+                <v-col cols="12" md="2">
+                    <v-select v-model="user.nationality" :items="items_nac" label="Nacionalidad"></v-select>
                 </v-col>
                 <v-col cols="12" md="2">
                     <v-select :items="items_nac_t" label="Tipo de nacionalidad"></v-select>
                 </v-col>
                 <v-col cols="12" md="1">
-                    <v-select :items="items_sexo" label="Sexo"></v-select>
+                    <v-select v-model="user.sex" :items="items_sexo" label="Sexo"></v-select>
                 </v-col>
                 <v-col cols="7" md="3">
-                    <v-select v-model="estado_civil" :items="items_ec" label="Estado Civil"></v-select>
+                    <v-select  :items="items_ec" label="Estado Civil"></v-select>
                 </v-col>
                 <v-col cols="5" md="2">
-                    <DatePicker text="Fecha de Inicio"/>
+                    <DatePicker text="Fecha de Inicio" />
                 </v-col>
             </v-row>
             <v-row>
@@ -63,20 +57,20 @@
 
 
 <script>
-    import DatePicker from '@/components/inputs/DatePicker.vue'
-    
-    export default {
+import DatePicker from '@/components/inputs/DatePicker.vue'
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
     components:
     {
         DatePicker,
     },
     data() {
         return {
+            name: '',
+            surname: '',
             enable: false,
             valid: false,
-            firstname: '',
-            lastname: '',
-            estado_civil: '',
             nameRules: [
                 v => !!v || 'Name is required',
                 v => v.length <= 30 || 'Name must be less than 30 characters',
@@ -95,6 +89,16 @@
                 'Separado/a/x de Hecho - Concubinato', 'Unión Convivencial'],
         }
     },
+    mounted(){
+        this.getUser()
+    },
+    computed: {
+        ...mapGetters(['user', 'isAuthenticated'])
+    },
+    methods: {
+        ...mapActions(['getUser'])
+    },
+    
 
 }
 

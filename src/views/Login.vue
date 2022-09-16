@@ -1,43 +1,44 @@
 <template>
     <div>
-        <v-container >
-            <v-row>
-                <v-col cols="12" lg="12" md="12" >
-                    <v-card class="mx-auto mt-10" max-width="900" elevation="2">
-                        <v-container>
-                            <v-row>
-                                <v-col class="d-flex aling-center justify-center">
-                                    <v-img min-width="250" class="ma-5" max-width="250" src="../assets/logo_caja_nuevo.png" />
-                                </v-col>
-                            </v-row>
-                        </v-container>
-    
-                        <v-form class="ma-5 pa-5" v-model="valid" @submit.prevent="almacenarLocal">
-                            <v-text-field  ref="userFocus" v-model="user" label="Usuario" />
-                            <v-text-field class="mt-2"  v-model="password" :value="password" label="Contraseña"
-                                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'" @click:append="value = !value"
-                                :type=" value ? 'password' : 'text' " :rules="[rules.password]" @input="_ => password = _">
-                            </v-text-field>
-                        </v-form>
-                        <div class="ma-8">
-                            <v-btn type="submit" @click="persist" block elevation="2" color="primary">Acceder</v-btn>
-                        </div>
-                        
-                        <v-card-actions>
-                            <v-card-text>
-                                Olvidó su <a>Contraseña?</a>
-                            </v-card-text>
-                        </v-card-actions>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
+        <v-row>
+            <v-col cols="12" lg="12" md="12">
+                <v-card class="mx-auto mt-10" max-width="900" elevation="2">
+                    <v-container>
+                        <v-row>
+                            <v-col class="d-flex aling-center justify-center">
+                                <v-img min-width="250" class="ma-5" max-width="250"
+                                    src="../assets/logo_caja_nuevo.png" />
+                            </v-col>
+                        </v-row>
+                    </v-container>
+
+                    <v-form class="ma-5 pa-5" v-model="valid" @submit.prevent="almacenarLocal">
+                        <v-text-field ref="userFocus" v-model="user" label="Usuario" />
+                        <v-text-field class="mt-2" v-model="password" :value="password" label="Contraseña"
+                            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'" @click:append="value = !value"
+                            :type=" value ? 'password' : 'text' " :rules="[rules.password]" @input="_ => password = _">
+                        </v-text-field>
+                    </v-form>
+                    <div class="ma-5 ">
+                        <v-btn x-large type="submit" @click="persist" block elevation="2" color="primary">Ingresar
+                        </v-btn>
+                    </div>
+
+                    <v-card-actions>
+                        <v-card-text>
+                            Olvidó su <a>Contraseña?</a>
+                        </v-card-text>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
 
 <script>
 import store from "../store";
+
 export default {
     name: 'Login',
 
@@ -84,7 +85,7 @@ export default {
             localStorage.password = this.password;
             if (localStorage.user == "Emanuel" && localStorage.password == "donato") {
                 store.commit('changeAuthUser')
-                this.$router.push('/modificacion')
+                this.$router.push('/dashboard')
             } else {
                 this.$router.push('/login')
             };

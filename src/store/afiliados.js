@@ -8,13 +8,10 @@ export default ({
     namespaced: true,
 
     state: {
-        Items: [],
+       
     },
     getters: {
-        Items(state) {
-            return state.Items;
-        },
-
+   
     },
     mutations: {
         cargaItems(state, data) {

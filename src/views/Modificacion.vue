@@ -1,65 +1,69 @@
 <template>
     <div>
-        <v-container fluid grid-list-lg text-lg-left width="100%">
-            <v-row align-center justify-start />
-                <v-col cols="12" md="12">
-                    <v-card flat tile>
-                     <v-card-title primary-title>
+        <v-row>
+            <v-col>
+                <v-card flat>
+                    <v-card-title>
                         <h4>
-                            MODIFICACION DE DATOS
+                            Modificacion de datos de afiliado: {{ user.last_name }}, {{ user.first_name }}
                         </h4>
-                     </v-card-title>
-                     <v-tabs v-model="tab">
+                    </v-card-title>
+                    <v-tabs v-model="tab">
                         <v-tabs-slider></v-tabs-slider>
                         <v-tab v-for="item in items" :key="item.id">
                             {{ item.tab }}
                         </v-tab>
                     </v-tabs>
-                    <v-card-actions>
-                         <v-tabs-items v-model="tab">
-                             <v-tab-item v-for="item in items" :key="item.id">
-                                 <component v-bind:is="item.content"></component>
-                             </v-tab-item>
-                         </v-tabs-items>
-                     </v-card-actions>
+
+                        <v-tabs-items class="pa-2" v-model="tab">
+                            <v-tab-item v-for="item in items" :key="item.id">
+                                <component v-bind:is="item.content"></component>
+                            </v-tab-item>
+                        </v-tabs-items>
+
                     <div>
                         <v-btn class="ma-3" color="error">Validar campos</v-btn>
                         <v-btn class="ma-3" color="info">Actualizar datos</v-btn>
                     </div>
                 </v-card>
             </v-col>
-            </v-row>
-        </v-container>
+        </v-row>
     </div>
-
-
-
-
 </template>
 
 <script>
-import Panel1 from '../components/panels/Panel1.vue'
-import Panel2 from '../components/panels/Panel2.vue'
-import Panel3 from '../components/panels/Panel3.vue'
+import PanelDatosBasicos from '../components/panels/PanelDatosBasicos.vue'
+import PanelDatosProfesionales from '../components/panels/PanelDatosProfesionales.vue'
+import PanelDatosAfiliacion from '../components/panels/PanelDatosAfiliacion.vue'
+import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 
 export default {
     components:
     {
-
-        Panel1,
-        Panel2,
-        Panel3,
+        PanelDatosBasicos,
+        PanelDatosProfesionales,
+        PanelDatosAfiliacion,
     },
     data() {
         return {
             tab: null,
             items: [
-                { id: 1, tab: 'Panel1', content: 'Panel1' },
-                { id: 1, tab: 'Panel2', content: 'Panel2' },
-                { id: 1, tab: 'Panel3', content: 'Panel3' },
+                { id: 1, tab: 'Datos Basicos', content: 'PanelDatosBasicos' },
+                { id: 2, tab: 'Datos de Familiares', content: 'PanelFamiliares' },
+                { id: 3, tab: 'Datos de Afiliacion', content: 'PanelDatosAfiliacion' },
             ],
         }
     },
+    mounted(){
+        this.getUser()
+    },
+    computed: {
+        ...mapGetters(['user'])
+    },
+    methods: {
+        ...mapActions(['getUser'])
+    }
 } 
 </script>

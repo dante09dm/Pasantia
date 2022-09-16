@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 
   state: {
     token: null,
-    users: [],
+    user: {},
     authUser: false,
   },
   getters: {
@@ -15,8 +16,8 @@ export default new Vuex.Store({
       return state.token != null;
     },
 
-    users(state) {
-      return state.users;
+    user(state) {
+      return state.user;
     }
   },
   mutations: {
@@ -25,15 +26,16 @@ export default new Vuex.Store({
     },
     setAuthUser(state, payload) {
       state.authUser = payload
+      localStorage.getItem("user")
     },
-    setUser(state, payload){
-      state.users = payload;
+    setUser(state, user) {
+      state.user = user;
     },
     logout() {
       localStorage.removeItem('token')
       this.$router.push('/login')
     },
- 
+
     clearToken(state) {
       state.token = null;
       localStorage.removeItem("token");
@@ -52,49 +54,21 @@ export default new Vuex.Store({
   },
   //llamada asincronica a API
   actions: {
-    cargaUser: async function ({ commit }) {
+    async getUser({ commit }, user) {
       try {
-        const response = await axios
-          .get("https://my-json-server.typicode.com/Emanuelm26/HomeSwitchHome/data")
-          .then(response => (this.users = response))
-          .catch(error => console.log(error))
-          commit('setUsers', users)
-      } catch (e) {
-        console.log(e);
+        const res = await fetch('https://my-json-server.typicode.com/Emanuelm26/HomeSwitchHome/db', {
+          methods: 'POST',
+          headers: { 'Content-Type': 'aplication/json' },
+          body: JSON.stringify(user)
+        })
+        const json = await res.json()
+        commit('setUser', json.data)
+      } catch (error) {
+        console.log('Error: ', error)
       }
-    }
+    },
   },
-  modules: {
-
-  },
-  /*
-   
-  login(email, password) {
-    const user = { email, password };
-    axios
-      .post(url, this.user, config)
-      .then((response) => {
-        if (response.status == 200) {
-          console.log(response)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  },
-*/
-  /*   setToken(state, payload) {
-    state.token = payload
-  },
-    setUser(state, payload) {
-    state.users.name = payload.name
-      state.users.email = payload.email
-  
-  },
-    logout() {
-    localStorage.removeItem('token')
-      location.reload()
-  
-      */
-
 });
+
+ 
+
