@@ -58,7 +58,7 @@
 
 <script>
 import DatePicker from '@/components/inputs/DatePicker.vue'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     components:
@@ -69,7 +69,7 @@ export default {
         return {
             name: '',
             surname: '',
-            enable: false,
+            enable: true,
             valid: false,
             nameRules: [
                 v => !!v || 'Name is required',
@@ -90,13 +90,13 @@ export default {
         }
     },
     mounted(){
-        this.getUser()
+
     },
     computed: {
         ...mapGetters(['user', 'isAuthenticated'])
     },
     methods: {
-        ...mapActions(['getUser'])
+
     },
     
 

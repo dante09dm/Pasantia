@@ -1,58 +1,76 @@
 <template>
     <div>
-        <v-row>
-            <v-col cols="12" lg="12" md="12">
-                <v-card class="mx-auto mt-10" max-width="900" elevation="2">
-                    <v-container>
-                        <v-row>
-                            <v-col class="d-flex aling-center justify-center">
-                                <v-img min-width="250" class="ma-5" max-width="250"
-                                    src="../assets/logo_caja_nuevo.png" />
-                            </v-col>
-                        </v-row>
-                    </v-container>
+        <v-container class="justify-center aling-center">
+            <v-row>
+                <v-col cols="12" lg="12" md="12">
+                    <v-card class="mx-auto" max-width="600" elevation="2">
+                        <Alerta
+                            v-if="error"
+                            type="error"
+                            msg="Usuario o contraseña incorrectos." />
+                        <v-container>
+                            <v-row>
+                                <v-col class="d-flex aling-center justify-center">
+                                    <v-img min-width="250" class="ma-5" max-width="250"
+                                        src="../assets/logo_caja_nuevo.png" />
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-form class="ma-5 pa-5" v-model="valid" @submit.prevent="almacenarLocal">
+                            <v-text-field ref="userFocus" v-model="nro_afi" :rules="[rules.nro_afi]" required
+                                label="nº afiliado" />
+                            <v-text-field @keyup.enter="persist" class="mt-2" v-model="password" :value="password"
+                                label="Contraseña" :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                                @click:append="value = !value" :type=" value ? 'password' : 'text' "
+                                :rules="[rules.password]" @input="_ => password = _">
+                            </v-text-field>
+                        </v-form>
+                        <div class="ma-5 ">
+                            <v-btn x-large block type="submit" @click="persist" elevation="2" color="primary">Ingresar
+                            </v-btn>
+                        </div>
 
-                    <v-form class="ma-5 pa-5" v-model="valid" @submit.prevent="almacenarLocal">
-                        <v-text-field ref="userFocus" v-model="user" label="Usuario" />
-                        <v-text-field class="mt-2" v-model="password" :value="password" label="Contraseña"
-                            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'" @click:append="value = !value"
-                            :type=" value ? 'password' : 'text' " :rules="[rules.password]" @input="_ => password = _">
-                        </v-text-field>
-                    </v-form>
-                    <div class="ma-5 ">
-                        <v-btn x-large type="submit" @click="persist" block elevation="2" color="primary">Ingresar
-                        </v-btn>
-                    </div>
+                        <v-card-actions>
+                            <v-card-text>
+                                Olvidó su <a>Contraseña?</a>
+                            </v-card-text>
+                        </v-card-actions>
 
-                    <v-card-actions>
-                        <v-card-text>
-                            Olvidó su <a>Contraseña?</a>
-                        </v-card-text>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-        </v-row>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
 
 <script>
-import store from "../store";
+import { mapActions, mapGetters } from 'vuex';
+import Alerta from '@/components/alerts/Alertas.vue';
 
 export default {
     name: 'Login',
+    components: {
+        Alerta,
+    },
 
     data: () =>
     ({
-
-        user: '',
-        password: '',
+        nro_afi: '91218',
+        password: 'donato',
         error: false,
 
         valid: true,
         value: true,
         rules: {
-            required: value => !!value || "Requerida.",
+            nro_afi: value => {
+                const pattern = /^(?=.*[0-9])(?=.{0})/;
+                return (
+                    pattern.test(value) || "Ingrese solo numeros."
+                );
+
+            },
+
             password: value => {
                 const pattern = /^(?=.*[a-z])(?=.{6,})/;
                 //const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/;
@@ -68,28 +86,23 @@ export default {
     },
     mounted() {
         this.$refs.userFocus.focus();
-        if (localStorage.user) {
-            this.user = localStorage.user;
-        }
-        if (localStorage.password) {
-            this.password = localStorage.password;
-        }
     },
     computed: {
-
+        ...mapGetters(['user', 'isAuthenticated'])
     },
 
     methods: {
+        ...mapActions(['getUser', 'cerrarSesion', 'getContacto']),
+
         persist() {
-            localStorage.user = this.user;
-            localStorage.password = this.password;
-            if (localStorage.user == "Emanuel" && localStorage.password == "donato") {
-                store.commit('changeAuthUser')
+            if (this.nro_afi == "91218" && this.password == "donato")
+            {
+                this.getUser()
+                localStorage.setItem("logUser", JSON.stringify({ "user": this.nro_afi, "password": this.password }))
                 this.$router.push('/dashboard')
-            } else {
-                this.$router.push('/login')
-            };
-        },
+                this.error=false
+            }
+        }
     }
 
 }

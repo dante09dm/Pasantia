@@ -36,7 +36,6 @@ import PanelDatosBasicos from '../components/panels/PanelDatosBasicos.vue'
 import PanelDatosProfesionales from '../components/panels/PanelDatosProfesionales.vue'
 import PanelDatosAfiliacion from '../components/panels/PanelDatosAfiliacion.vue'
 import { mapGetters } from 'vuex'
-import { mapActions } from 'vuex'
 
 
 export default {
@@ -57,13 +56,12 @@ export default {
         }
     },
     mounted(){
-        this.getUser()
     },
     computed: {
         ...mapGetters(['user'])
     },
     methods: {
-        ...mapActions(['getUser'])
+
     }
 } 
 </script>

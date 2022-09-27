@@ -1,39 +1,42 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 
   state: {
     token: null,
-    user: {},
-    authUser: false,
+    user: '',
+    domicilio: '', 
   },
   getters: {
     isAuthenticated(state) {
-      return state.token != null;
+      return state.user != '';
     },
 
     user(state) {
       return state.user;
+    },
+    contacto(state) {
+      return state.contacto;
     }
   },
   mutations: {
     setToken(state, payload) {
       state.token = payload;
     },
-    setAuthUser(state, payload) {
-      state.authUser = payload
-      localStorage.getItem("user")
-    },
+
     setUser(state, user) {
       state.user = user;
     },
-    logout() {
-      localStorage.removeItem('token')
-      this.$router.push('/login')
+    setContacto(state, contacto) {
+      state.contacto = contacto;
+    },
+    logout(state, user) {
+      state.user = ""
+      localStorage.removeItem("logUser")
+      window.location.href = "/login"
     },
 
     clearToken(state) {
@@ -46,9 +49,11 @@ export default new Vuex.Store({
     necesidad de token
     (borrar al implementar jwt) 
     */
-    changeAuthUser(state) {
-      state.authUser = !state.authUser;
-    },
+
+    clearUser(state){
+      state.user = {};
+      localStorage.removeItem("logUser")
+    }
 
 
   },
@@ -67,8 +72,26 @@ export default new Vuex.Store({
         console.log('Error: ', error)
       }
     },
+    async getContactos({ commit }, contacto) {
+      try {
+        const res = await fetch('https://my-json-server.typicode.com/Emanuelm26/sortear/db', {
+          methods: 'POST',
+          headers: { 'Content-Type': 'aplication/json' },
+          body: JSON.stringify(contacto)
+        })
+        const json = await res.json()
+        commit('setContacto', json.data)
+      } catch (error) {
+        console.log('Error: ', error)
+      }
+    },
+    cerrarSesion({ commit }, user){
+      commit('logout', user)
+    }
   },
+
 });
+
 
  
 

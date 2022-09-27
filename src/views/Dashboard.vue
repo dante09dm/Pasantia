@@ -1,45 +1,50 @@
 <template>
-    <div>
-        <v-container>
-            <v-row>
-                <v-col cols="12" md="5">
-                    <UserCard />
-                </v-col>
-                <v-col cols="12" md="7">
-                    <ListCard />
-                </v-col>
-            </v-row>
+    <div class="d-flex align-content-start flex wrap">
+        <v-row class="pa-2" no-gutters>
+            <v-col cols="12" md="6">
+                <UserCard />
+            </v-col>
+            <v-col cols="12" md="6">
+                <ContactCard />
+            </v-col>
+            <v-col cols="12" md="6">
+                <FamilyCard />
+            </v-col>
+            <v-col cols="12" md="6">
+                <ProfesionalCard />
+            </v-col>
+        </v-row>
 
-        </v-container>
+
     </div>
 
 </template>
 
 <script>
-import UserCard from '@/components/UserCard.vue'
-import ListCard from '@/components/ListCard.vue'
-import { mapGetters, mapActions } from 'vuex';
+import UserCard from '@/components/profiles/UserCard.vue'
+import ContactCard from '@/components/profiles/ContactCard.vue'
+import FamilyCard from '@/components/profiles/FamilyCard.vue'
+import ProfesionalCard from '@/components/profiles/ProfesionalCard.vue'
 
 export default {
     name: "Dashboard",
     components: {
         UserCard,
-        ListCard,
+        ContactCard,
+        FamilyCard,
+        ProfesionalCard,
     },
 
     data() {
         return {
-            id: 4,
+
         }
     },
-    mounted() {
-        this.getUser();
-    },
+
     computed: {
-        ...mapGetters(['user'])
+
     },
     methods: {
-        ...mapActions(['getUser'])
     }
 
 }

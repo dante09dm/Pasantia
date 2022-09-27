@@ -4,9 +4,13 @@ import AdministracionDeCategorias from '../views/AdministracionDeCategorias.vue'
 import AdministracionEmergenciasMedicas from '../views/AdministracionEmergenciasMedicas.vue'
 import EmergenciasMedicas from '../views/EmergenciasMedicas.vue'
 import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
+import PreAfiliacion from '../views/PreAfiliacion.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Modificacion from '../views/Modificacion.vue'
+import EditPhone from '../views/EditPhone.vue'
+import EditAddress from '../views/EditAddress.vue'
+import EditEmail from '../views/EditEmail.vue'
+
 
 Vue.use(VueRouter)
 
@@ -14,27 +18,41 @@ const routes = [
 
   {
     path: '/Login',
-    name:'Login',
+    name: 'Login',
     component: Login
+  },
+  {
+    path: '/EditPhone',
+    name: 'EditPhone',
+    component: EditPhone
+  },
+  {
+    path: '/EditAddress',
+    name: 'EditAddress',
+    component: EditAddress
+  },
+  {
+    path: '/EditEmail',
+    name: 'EditEmail',
+    component: EditEmail
   },
 
   {
     path: '/Modificacion',
-    name:'Modificacion',
+    name: 'Modificacion',
     component: Modificacion
   },
 
- 
   {
-    path: '/Register',
-    name:'Register',
-    component: Register
+    path: '/PreAfiliacion',
+    name: 'PreAfiliacion',
+    component: PreAfiliacion
   },
 
   {
-    path: '/Dashboard',
-    name:'Dashboard',
-    component: Dashboard
+    path: '/Dashboard/',
+    name: 'Dashboard',
+    component: Dashboard,
   },
 
   {

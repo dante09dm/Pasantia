@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-menu ref="menu1" v-model="menu1" :close-on-content-click="false" transition="scale-transition" offset-y
+        <v-menu ref="menu1" v-model="menu1" :close-on-content-click="false" transition="scale-transition" 
             max-width="290px" min-width="auto">
             <template v-slot:activator="{ on, attrs }">
                 <v-text-field class="pt-1" dense v-model="dateFormatted" :label="text" hint="DD/MM/YYYY" 

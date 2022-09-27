@@ -5,6 +5,7 @@
                 <v-col cols="6" md="6">
                     <v-file-input chips label="Adjuntar imagen" show-size truncate-length="15">
                     </v-file-input>
+                    <small>*imagenes permitidas en formato .png .jpge</small>
                 </v-col>
             </v-row>
         </v-form>
