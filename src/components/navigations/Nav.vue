@@ -7,7 +7,7 @@
             </v-app-bar-nav-icon>
             <v-toolbar-title>Caja de Psicologos</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn v-if="isAuthenticated" @click.prevent="cerrarSesion" outlined >cerrar session</v-btn>
+            <v-btn v-if="isAuthenticated" @click.prevent="cerrarSesion" rounded outlined >cerrar session</v-btn>
         </v-app-bar>
 
         <v-navigation-drawer app dark color="primary" v-model="drawer">

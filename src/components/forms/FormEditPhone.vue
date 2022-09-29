@@ -16,8 +16,11 @@
                 <v-col cols="6" md="6">
                     <v-select v-model="type_cont" :items="items_t_cont" label="Tipo de Contacto" required></v-select>
                 </v-col>
-                <v-col cols="6" md="6">
+                <v-col cols="6" md="3">
                     <v-select v-model="type_tel" :items="items_t_tel" label="Tipo de Telefono" required></v-select>
+                </v-col>
+                <v-col cols="6" md="3">
+                    <v-select v-if="type_tel == 'CELULAR'" v-model="type_emp" :items="items_emp" label="Empresa"></v-select>
                 </v-col>
             </v-row>
             <v-row>
@@ -51,6 +54,7 @@
             items_cod_p: ['54', '55', '57', '591', '595', '593'],
             items_t_cont: ['PARTICULAR', 'PROFESIONAL', 'ALTERNATIVO1', 'ALTERNATIVO2'],
             items_t_tel: ['CELULAR', 'TELEFONO FIJO', 'FAX'],
+            items_emp: ['CLARO', 'PERSONAL', 'MOVISTAR', 'NEXTEL', 'OTRO'],
         }
     }
 }

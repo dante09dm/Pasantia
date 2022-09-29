@@ -72,7 +72,8 @@ export default new Vuex.Store({
         console.log('Error: ', error)
       }
     },
-    async getContactos({ commit }, contacto) {
+    
+/*     async getContactos({ commit }, contacto) {
       try {
         const res = await fetch('https://my-json-server.typicode.com/Emanuelm26/sortear/db', {
           methods: 'POST',
@@ -84,7 +85,7 @@ export default new Vuex.Store({
       } catch (error) {
         console.log('Error: ', error)
       }
-    },
+    }, */
     cerrarSesion({ commit }, user){
       commit('logout', user)
     }

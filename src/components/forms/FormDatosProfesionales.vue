@@ -8,7 +8,6 @@
                     <v-file-input chips label="Adjuntar archivos" multiple show-size truncate-length="9">
                     </v-file-input>
                 </v-col>
-            </v-row>
         </v-form>
     </div>
 </template>
