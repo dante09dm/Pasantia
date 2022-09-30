@@ -9,10 +9,9 @@
                             {{ Object.keys(user.contacto.telefonos).length }}
                         </span>
                     </v-avatar>
-                    <Dialogo cargaContent="phone" titulo="Nuevo numero"/>
+                    <Dialogo content="phone" titulo="Nuevo numero" />
                 </v-card-title>
                 <v-divider></v-divider>
-
                 <v-card v-for="item in user.contacto.telefonos" :key="item.name">
                     <v-card-actions>
                         <div>
@@ -30,7 +29,6 @@
                     </v-card-actions>
                 </v-card>
             </v-card>
-
         </v-container>
     </div>
 </template>

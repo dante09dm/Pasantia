@@ -12,11 +12,11 @@
       </v-card-title>
       <v-card-text>
 
-        <FormEditPhone v-if="cargaContent == 'phone'" />
-        <FormEditAddress v-if="cargaContent == 'address'"/>
-        <FormEditMail v-if="cargaContent == 'mail'"/>
-        <FormEditFamily v-if="cargaContent == 'family'"/>
-        <FormDatosProfesionales v-if="cargaContent == 'prof'" />
+        <FormEditPhone v-if="content == 'phone'" />
+        <FormEditAddress v-if="content == 'address'" />
+        <FormEditMail v-if="content == 'mail'" />
+        <FormEditFamily v-if="content == 'family'" />
+        <FormDatosProfesionales v-if="content == 'prof'" />
 
       </v-card-text>
     </v-card>
@@ -41,8 +41,8 @@ export default {
     FormEditMail,
     FormEditFamily,
     FormDatosProfesionales
-},
-  props: ['titulo', 'cargaContent'],
+  },
+  props: ['titulo', 'content'],
 }
 
 

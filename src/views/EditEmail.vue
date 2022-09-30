@@ -9,7 +9,7 @@
                             {{ Object.keys(user.contacto.email).length }}
                         </span>
                     </v-avatar>
-                    <Dialogo cargaContent="mail" titulo="Nueva direccion de mail"/>
+                    <Dialogo content="mail" titulo="Nueva direccion de mail" />
                 </v-card-title>
                 <v-divider></v-divider>
 
@@ -44,7 +44,7 @@ export default {
     components: {
         Dialogo,
     },
-    
+
     computed: {
         ...mapGetters(['user', 'contacto'])
     },

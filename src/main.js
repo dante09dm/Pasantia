@@ -9,7 +9,7 @@ import VueAxios from 'vue-axios'
 
 //Se permiten las credenciales
 axios.defaults.withCredentials = true
-axios.defaults.headers['Content-Type']='aplication/json';
+axios.defaults.headers['Content-Type'] = 'aplication/json';
 // axios.defaults.headers['Authorization']=$store.get;
 
 //Emanuel 30/08/22

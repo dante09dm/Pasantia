@@ -7,7 +7,7 @@ import Modificacion from '../views/Modificacion.vue'
 import EditPhone from '../views/EditPhone.vue'
 import EditAddress from '../views/EditAddress.vue'
 import EditEmail from '../views/EditEmail.vue'
-
+import Boletas from '../views/Boletas.vue'
 
 Vue.use(VueRouter)
 
@@ -50,7 +50,12 @@ const routes = [
     path: '/Dashboard',
     name: 'Dashboard',
     component: Dashboard,
-  }
+  },
+  {
+    path: '/Boletas',
+    name: 'Boletas',
+    component: Boletas,
+  },
 ]
 
 const router = new VueRouter({
@@ -62,9 +67,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   //Cuando un usuario no esta logeado solo tendra acceso a las publicPages
   const publicPages = ['login'];
-  const authRequired =  publicPages.includes(to.path);
+  const authRequired = publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('logUser');
-  if ( authRequired && !loggedIn ){
+  if (authRequired && !loggedIn) {
     return next('login');
   }
   next();

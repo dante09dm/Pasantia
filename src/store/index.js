@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -32,12 +33,13 @@ export default new Vuex.Store({
       state.user = user;
     },
 
-    setDomicilios(state, domicilios){
+    setDomicilios(state, domicilios) {
       state.domicilios = domicilios;
     },
-    logout() {
-      state.removeItem('token')
-      localStorage.removeItem("logUser")
+    logout(state) {
+      window.location.href = "/login"
+      localStorage.removeItem('logUser')
+      state.user = ''
     },
 
     clearToken(state) {
@@ -45,7 +47,7 @@ export default new Vuex.Store({
       localStorage.removeItem("token");
     },
 
-    clearUser(state){
+    clearUser(state) {
       state.user = {};
       localStorage.removeItem("logUser")
     }
@@ -67,40 +69,15 @@ export default new Vuex.Store({
         console.log('Error: ', error)
       }
     },
-    getToken({commit}){
-      if(localStorage.getItem('token')){
+    getToken({ commit }) {
+      if (localStorage.getItem('token')) {
         commit('setToken', localStorage.getItem('token'))
-      }else{
+      } else {
         commit('setToken', null)
       }
     },
-    async getDomicilios({commit}, domicilios ){
-      try {
-        const res = await fetch('http://localhost:8083/getDomicilios', {
-          methods: 'POST',
-          headers: { 'Content-Type': 'aplication/json' },
-          body: JSON.stringify(domicilios)
-        })
-        const json = await res.json()
-        commit('setDomicilios',json.data);
-      } catch(error){
-        console.log('Error: ', error)
-      }
-    },
-/*     async getContactos({ commit }, contacto) {
-      try {
-        const res = await fetch('https://my-json-server.typicode.com/Emanuelm26/sortear/db', {
-          methods: 'POST',
-          headers: { 'Content-Type': 'aplication/json' },
-          body: JSON.stringify(contacto)
-        })
-        const json = await res.json()
-        commit('setContacto', json.data)
-      } catch (error) {
-        console.log('Error: ', error)
-      }
-    }, */
-    cerrarSesion({ commit }, user){
+
+    cerrarSesion({ commit }, user) {
       commit('logout', user)
     }
   },
@@ -108,5 +85,5 @@ export default new Vuex.Store({
 });
 
 
- 
+
 
