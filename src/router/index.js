@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AdministracionDeCategorias from '../views/AdministracionDeCategorias.vue'
-import AdministracionEmergenciasMedicas from '../views/AdministracionEmergenciasMedicas.vue'
-import EmergenciasMedicas from '../views/EmergenciasMedicas.vue'
 import Login from '../views/Login.vue'
 import PreAfiliacion from '../views/PreAfiliacion.vue'
 import Dashboard from '../views/Dashboard.vue'
@@ -17,7 +14,7 @@ Vue.use(VueRouter)
 const routes = [
 
   {
-    path: '/Login',
+    path: '/login',
     name: 'Login',
     component: Login
   },
@@ -50,27 +47,10 @@ const routes = [
   },
 
   {
-    path: '/Dashboard/',
+    path: '/Dashboard',
     name: 'Dashboard',
     component: Dashboard,
-  },
-
-  {
-    path: '/AdministracionDeCategorias',
-    name: 'AdministracionDeCategorias',
-    component: AdministracionDeCategorias
-  },
-
-  {
-    path: '/AdministracionEmergenciasMedicas',
-    name: 'AdministracionEmergenciasMedicas',
-    component: AdministracionEmergenciasMedicas
-  },
-  {
-    path: '/EmergenciasMedicas',
-    name: 'EmergenciasMedicas',
-    component: EmergenciasMedicas
-  },
+  }
 ]
 
 const router = new VueRouter({
@@ -79,17 +59,15 @@ const router = new VueRouter({
   routes
 })
 
-/*  router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   //Cuando un usuario no esta logeado solo tendra acceso a las publicPages
   const publicPages = ['login'];
   const authRequired =  publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
-  if (authRequired && !loggedIn){
-    return next('/login');
+  const loggedIn = localStorage.getItem('logUser');
+  if ( authRequired && !loggedIn ){
+    return next('login');
   }
-
   next();
 
-}) */
-
+})
 export default router

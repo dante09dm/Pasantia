@@ -67,8 +67,8 @@ export default {
     },
     data() {
         return {
-            name: '',
-            surname: '',
+            first_name: '',
+            last_name: '',
             enable: true,
             valid: false,
             nameRules: [

@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <v-card>
             <v-card-title>
                 <h5>
@@ -9,9 +8,17 @@
             </v-card-title>
             <v-divider></v-divider>
             <v-card-item>
-                <FormDatosBasicos />
-                <FormContact />
-                <FormDatosProfesionales />
+                <v-row>
+                    <v-col cols="12">
+                        <FormDatosBasicos />
+                    </v-col>
+                    <v-col cols="12">
+                        <FormContact />
+                    </v-col>
+                    <v-col cols="12">
+                        <FormDatosProfesionales />
+                    </v-col>
+                </v-row>
 
             </v-card-item>
         </v-card>

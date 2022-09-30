@@ -9,10 +9,10 @@
                     <v-text-field v-model="last_name" label="Apellido" required>
                     </v-text-field>
                 </v-col>
-                <v-col cols="3" md="1">
+                <v-col cols="4" md="1">
                     <v-select v-model="type_dni" :items="items_doc_t" label="Tipo Doc."></v-select>
                 </v-col>
-                <v-col cols="9" md="2">
+                <v-col cols="8" md="2">
                         <ValidationProvider rules="minmax:7,8" v-slot="{ errors }">
                         <v-text-field v-model="id_number" label="Nro."></v-text-field>
                         <span> {{ errors[0] }} </span>
@@ -36,7 +36,7 @@
                     <v-select v-model="est_civil" :items="items_ec" label="Estado Civil"></v-select>
                 </v-col>
                 <v-col cols="5" md="2">
-                    <DatePicker v-if="est_civil == 'Soltero/a/x'" text="Fecha de Inicio" />
+                    <DatePicker v-if="est_civil !== 'Soltero/a/x'" text="Fecha de Inicio" />
                 </v-col>
             </v-row>
             <v-row>
@@ -91,7 +91,7 @@ export default {
             t_nac: '',
             est_civil: '',
             valid: false,
-            vive: false,
+            vive: true,
             disc: false,
             items_nac: ['Argentina', 'Peruana', 'Boliviana', 'Chilena', 'Extranjero', 'Uruguaya', 'Paraguaya', 'Brasileña'],
             items_nac_t: ['Nativo', 'Extranjero', 'Naturalizado', 'Por opcion'],

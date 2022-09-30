@@ -5,7 +5,7 @@
                 <v-card flat>
                     <v-card-title>
                         <h4>
-                            Modificacion de datos de afiliado: {{ user.last_name }}, {{ user.first_name }}
+                            Modificacion de datos de afiliado: {{ this.last_name }}, {{ this.first_name }}
                         </h4>
                     </v-card-title>
                     <v-tabs v-model="tab">

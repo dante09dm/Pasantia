@@ -59,7 +59,6 @@ export default {
         nro_afi: '91218',
         password: 'donato',
         error: false,
-
         valid: true,
         value: true,
         rules: {

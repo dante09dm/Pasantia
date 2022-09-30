@@ -27,7 +27,7 @@
         <v-card-title class="d-flex justify-center ma-5 text-center">
             <div>
                 <h3>Nº: {{ user.nro_af }}</h3>
-                <div>{{ user.last_name }} {{ user.first_name}}</div>
+                <div>{{ user.last_name }} {{ user.first_name }}</div>
                 <div>{{ user.nivel}}</div>
             </div>
         </v-card-title>

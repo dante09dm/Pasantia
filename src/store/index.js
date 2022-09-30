@@ -7,8 +7,8 @@ export default new Vuex.Store({
 
   state: {
     token: null,
+    domicilios: null,
     user: '',
-    domicilio: '', 
   },
   getters: {
     isAuthenticated(state) {
@@ -18,8 +18,9 @@ export default new Vuex.Store({
     user(state) {
       return state.user;
     },
-    contacto(state) {
-      return state.contacto;
+
+    domicilios(state) {
+      return state.domicilios;
     }
   },
   mutations: {
@@ -30,25 +31,19 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user = user;
     },
-    setContacto(state, contacto) {
-      state.contacto = contacto;
+
+    setDomicilios(state, domicilios){
+      state.domicilios = domicilios;
     },
-    logout(state, user) {
-      state.user = ""
+    logout() {
+      state.removeItem('token')
       localStorage.removeItem("logUser")
-      window.location.href = "/login"
     },
 
     clearToken(state) {
       state.token = null;
       localStorage.removeItem("token");
     },
-    /*     
-    El siguiente metodo es para
-    probar la autenticacion sin
-    necesidad de token
-    (borrar al implementar jwt) 
-    */
 
     clearUser(state){
       state.user = {};
@@ -72,7 +67,26 @@ export default new Vuex.Store({
         console.log('Error: ', error)
       }
     },
-    
+    getToken({commit}){
+      if(localStorage.getItem('token')){
+        commit('setToken', localStorage.getItem('token'))
+      }else{
+        commit('setToken', null)
+      }
+    },
+    async getDomicilios({commit}, domicilios ){
+      try {
+        const res = await fetch('http://localhost:8083/getDomicilios', {
+          methods: 'POST',
+          headers: { 'Content-Type': 'aplication/json' },
+          body: JSON.stringify(domicilios)
+        })
+        const json = await res.json()
+        commit('setDomicilios',json.data);
+      } catch(error){
+        console.log('Error: ', error)
+      }
+    },
 /*     async getContactos({ commit }, contacto) {
       try {
         const res = await fetch('https://my-json-server.typicode.com/Emanuelm26/sortear/db', {

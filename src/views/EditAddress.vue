@@ -3,10 +3,10 @@
         <v-container>
             <v-card>
                 <v-card-title class="d-flex ma-0">
-                    <h5>Domicilio de contacto</h5>
+                    <h5> Domicilio de contacto {{ Object.keys(domicilios).length }}</h5>
+                    
                     <v-avatar class="ml-5" color="orange" size="25">
                         <span class="white--text">
-                            {{ Object.keys(user.contacto.domicilios).length }}
                         </span>
                     </v-avatar>
                     <Dialogo cargaContent="address" titulo="Nuevo domicilio" />
@@ -53,7 +53,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['user', 'contacto'])
+        ...mapGetters(['user', 'domicilios'])
     },
     props: ['title', 'cantidad']
 }
