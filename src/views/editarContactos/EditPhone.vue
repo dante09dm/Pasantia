@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-container>
-            <v-card>
+            <v-card tile outlined>
                 <v-card-title class="d-flex ma-0">
                     <h5>Contacto telefonico</h5>
                     <v-avatar class="ml-5" color="orange" size="25">
@@ -9,26 +9,31 @@
                             {{ Object.keys(user.contacto.telefonos).length }}
                         </span>
                     </v-avatar>
-                    <Dialogo content="phone" titulo="Nuevo numero" />
+                    <Dialogo icon="mdi-plus" content="phone" titulo="Nuevo numero" />
                 </v-card-title>
                 <v-divider></v-divider>
-                <v-card v-for="item in user.contacto.telefonos" :key="item.name">
-                    <v-card-actions>
-                        <div>
-                            <div class="text--primary">
-                                ({{item.cod_pais}}) {{item.prefix}}-{{item.num }}
-                            </div>
-                            <div class="text--secondary">
-                                {{item.type_cont}}
-                            </div>
-                            <div class="text--secondary">
-                            </div>
+
+                <v-card-actions v-for="item in user.contacto.telefonos" :key="item.name">
+                    <div>
+                        <div class="text--primary">
+                            ({{item.cod_pais}}) {{item.prefix}}-{{item.num }}
                         </div>
-                        <v-spacer></v-spacer>
-                        <v-icon color="primary">mdi-chevron-right</v-icon>
-                    </v-card-actions>
-                </v-card>
+                        <div class="text--secondary">
+                            {{item.type_cont}}
+                        </div>
+                        <div class="text--secondary">
+                        </div>
+                    </div>
+                    <v-spacer></v-spacer>
+                    <v-btn small color="error" outlined fab>
+                        <v-icon>mdi-trash-can-outline</v-icon>
+                    </v-btn>
+                    <v-btn color="primary" small outlined fab>
+                        <v-icon>mdi-pencil-outline</v-icon>
+                    </v-btn>
+                </v-card-actions>
             </v-card>
+
         </v-container>
     </div>
 </template>

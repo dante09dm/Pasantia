@@ -1,11 +1,10 @@
 <template>
-    <v-card class="text-center">
+    <v-card outlined class="text-center">
         <v-card-title class="d-flex ma-0">
             <h5>
-                Datos profesionales
+                Mis datos profesionales
             </h5>
-            <Dialogo titulo="Actualizar informacion profesional" cargaContent="prof" />
-
+            <Dialogo icon="mdi-file-document-plus" titulo="Actualizar informacion profesional" content="prof" />
         </v-card-title>
         <v-divider></v-divider>
         <v-card-title class="d-flex justify-center ma-5 text-center">
@@ -18,13 +17,16 @@
     </v-card>
 </template>
 <script>
-import Dialogo from '../panels/Dialogo.vue';
-    export default {
+import Dialogo from '@/components/panels/Dialogo.vue';
+export default {
     data() {
         return {
             data: true,
         };
     },
-    components: { Dialogo }
+    components:
+    {
+        Dialogo
+    }
 }
 </script>

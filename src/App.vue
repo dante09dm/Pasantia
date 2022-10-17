@@ -1,6 +1,6 @@
 <template>
   <v-app>
-      <Nav v-if="isAuthenticated" />
+    <Navigator v-if="isAuthenticated"></Navigator>
     <v-main>
       <router-view class="app" />
     </v-main>
@@ -12,16 +12,16 @@
 </style>
 
 <script>
-import Nav from '@/components/navigations/Nav.vue'  
+import Navigator from '@/components/navigations/Nav.vue'
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   data: () => ({
-    }),
+  }),
 
   components: {
-    Nav,
+    Navigator,
 
   },
   beforeCreate() {
@@ -44,10 +44,10 @@ export default {
           }
         }); */
   },
-  computed:{
+  computed: {
     ...mapGetters(['user', 'isAuthenticated'])
   },
-  methods:{
+  methods: {
     ...mapActions(['cerrarSesion'])
   }
 

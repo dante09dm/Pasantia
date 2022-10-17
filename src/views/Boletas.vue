@@ -3,7 +3,10 @@
         <v-container>
             <v-card>
                 <v-card_title>
-                    Aca podes imprimir tus boletas
+                    <h3>
+
+                        Aca podes imprimir tus boletas
+                    </h3>
                 </v-card_title>
             </v-card>
         </v-container>

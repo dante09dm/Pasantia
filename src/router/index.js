@@ -3,18 +3,17 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import PreAfiliacion from '../views/PreAfiliacion.vue'
 import Dashboard from '../views/Dashboard.vue'
-import Modificacion from '../views/Modificacion.vue'
-import EditPhone from '../views/EditPhone.vue'
-import EditAddress from '../views/EditAddress.vue'
-import EditEmail from '../views/EditEmail.vue'
+import Notificaciones from '../views/Notificaciones.vue'
+import EditPhone from '../views/editarContactos/EditPhone.vue'
+import EditAddress from '../views/editarContactos/EditAddress.vue'
+import EditEmail from '../views/editarContactos/EditEmail.vue'
 import Boletas from '../views/Boletas.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-
   {
-    path: '/login',
+    path: '*',
     name: 'Login',
     component: Login
   },
@@ -35,12 +34,6 @@ const routes = [
   },
 
   {
-    path: '/Modificacion',
-    name: 'Modificacion',
-    component: Modificacion
-  },
-
-  {
     path: '/PreAfiliacion',
     name: 'PreAfiliacion',
     component: PreAfiliacion
@@ -55,6 +48,11 @@ const routes = [
     path: '/Boletas',
     name: 'Boletas',
     component: Boletas,
+  },
+  {
+    path: '/Notificaciones',
+    name: 'Notificaciones',
+    component: Notificaciones,
   },
 ]
 

@@ -1,16 +1,17 @@
 <template>
-    <v-card class="text-center">
+    <v-card outlined class="text-center">
         <v-card-title class="d-flex ma-0">
             <h5>
-                Familiares registrados
+                Mis familiares registrados
             </h5>
-            <Dialogo cargaContent="family" titulo="Nuevo familiar" />
+            <Dialogo icon="mdi-account-plus" content="family" titulo="Nuevo familiar" />
         </v-card-title>
         <v-divider></v-divider>
         <v-card-title class="d-flex justify-center ma-5 text-center">
             <div v-if="familiares == 0">
                 <h5>
-                No hay familiares ingresados en el sistema</h5>
+                    No hay familiares ingresados en el sistema
+                </h5>
             </div>
         </v-card-title>
         <v-card-actions class="d-flex">

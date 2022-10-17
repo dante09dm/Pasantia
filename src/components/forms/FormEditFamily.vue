@@ -3,7 +3,8 @@
         <v-form v-model="valid">
             <v-row>
                 <v-col cols="12" md="4">
-                    <v-text-field v-model="first_name" label="Nombre" required></v-text-field>
+                    <v-text-field v-model="first_name" label="Nombre" required>
+                    </v-text-field>
                 </v-col>
                 <v-col cols="12" md="5">
                     <v-text-field v-model="last_name" label="Apellido" required>
@@ -13,11 +14,8 @@
                     <v-select v-model="type_dni" :items="items_doc_t" label="Tipo Doc."></v-select>
                 </v-col>
                 <v-col cols="8" md="2">
-                        <ValidationProvider rules="minmax:7,8" v-slot="{ errors }">
-                        <v-text-field v-model="id_number" label="Nro."></v-text-field>
-                        <span> {{ errors[0] }} </span>
-                        </ValidationProvider>
-                    </v-col>
+                    <v-text-field v-model="id_number" label="Nro."></v-text-field>
+                </v-col>
             </v-row>
             <v-row>
                 <v-col cols="12" md="2">
@@ -32,10 +30,10 @@
                 <v-col cols="12" md="1">
                     <v-select v-model="sex" :items="items_sexo" label="Sexo"></v-select>
                 </v-col>
-                <v-col cols="7" md="3">
+                <v-col cols="12" md="3">
                     <v-select v-model="est_civil" :items="items_ec" label="Estado Civil"></v-select>
                 </v-col>
-                <v-col cols="5" md="2">
+                <v-col cols="12" md="2">
                     <DatePicker v-if="est_civil !== 'Soltero/a/x'" text="Fecha de Inicio" />
                 </v-col>
             </v-row>
@@ -69,8 +67,6 @@
 </template>
 
 <script>
-import validations from '../../validation'
-import { ValidationProvider, extend } from 'vee-validate';
 import DatePicker from '@/components/inputs/DatePicker.vue';
 
 
@@ -78,7 +74,6 @@ export default {
     components:
     {
         DatePicker,
-        ValidationProvider,
 
     },
     data() {

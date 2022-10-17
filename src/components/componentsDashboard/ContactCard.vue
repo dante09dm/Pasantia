@@ -1,49 +1,25 @@
 <template>
-    <v-card>
+    <v-card outlined>
         <v-card-title class="text-center">
             <div>
-                <h5>Datos de contacto</h5>
+                <h5>Mis datos de contacto</h5>
+                {{ domicilio.data }}
             </div>
-            <v-spacer></v-spacer>
-            <v-speed-dial top right absolute slide-y-reverse-transition direction="bottom">
-                <template v-slot:activator>
-                    <v-btn color="primary" dark fab right>
-                        <v-icon>
-                            mdi-pencil
-                        </v-icon>
-                    </v-btn>
-                </template>
-                <router-link style="text-decoration: none" to="/EditPhone">
-                    <v-btn fab dark small color="green">
-                        <v-icon>mdi-phone</v-icon>
-                    </v-btn>
-                </router-link>
-                <router-link style="text-decoration: none" to="/EditAddress">
-                <v-btn fab dark small color="indigo">
-                    <v-icon>mdi-map-marker</v-icon>
-                </v-btn>
-                </router-link>
-                <router-link style="text-decoration: none" to="/EditEmail">
-                    <v-btn fab dark small color="red">
-                        <v-icon>mdi-email</v-icon>
-                    </v-btn>
-                </router-link>
-            </v-speed-dial>
+            <Fab />
         </v-card-title>
         <v-divider></v-divider>
-        <div>
+        <!--        <div>
             <v-list three-line>
                 <v-row>
                     <v-col cols="2" md="2">
                         <v-list-item-icon>
-                            <v-icon class="ml-5" color="indigo">
+                            <v-icon class="ml-5" color="green">
                                 mdi-phone
                             </v-icon>
                         </v-list-item-icon>
                     </v-col>
                     <v-col cols="10" md="10">
-
-                        <v-list-item v-for="item in user.contacto.telefonos" :key="item.name">
+                        <v-list-item v-for="item in " :key="item.name">
                             <v-list-item-content>
                                 <v-list-item-title>({{item.cod_pais}}) {{item.prefix}}-{{item.num}}
                                 </v-list-item-title>
@@ -59,7 +35,7 @@
                 <v-row>
                     <v-col cols="2" md="2">
                         <v-list-item-icon>
-                            <v-icon class="ml-5" color="indigo">
+                            <v-icon class="ml-5" color="red">
                                 mdi-map-marker
                             </v-icon>
                         </v-list-item-icon>
@@ -98,27 +74,33 @@
                     </v-col>
                 </v-row>
             </v-list>
-        </div>
+        </div> -->
     </v-card>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
+import Fab from '@/components/navigations/Fab.vue'
 
 export default {
     name: "ContactCard",
+    components: {
+        Fab
+    },
+    created() {
+        console.log()
+    },
     data() {
         return {
+            cant_email: 0,
+            cant_domicilio: 0,
+            cant_telefono: 0,
         }
     },
-
     computed: {
-        ...mapGetters(['user', 'isAuthenticated'])
+        ...mapGetters(['domicilio'])
     },
     methods: {
-
     }
-
-
 }
 </script>

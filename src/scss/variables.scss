@@ -1,33 +1,30 @@
 // Globals
-$body-font-family: 'Arial', sans-serif;
+$body-font-family: 'Roboto',
+  sans-serif;
 $border-radius-root: 0.25rem;
 $font-size-root: 1rem;
 $borders: #d1d0d0;
 
 $fab-icon-sizes: (
   'small': 20
-  );
+);
 $btn-sizes: (
   'x-small': 28,
   'small': 28,
   'default': 28,
   'large': 28,
   'x-large': 28
-  );
+);
 
 $material-light: (
-  'background': #dedede,
-  'inputs': (
-    'box': $borders
-    ),
-  'text-fields': (
-    'filled': $borders,
+  'background': #fcfcfc,
+  'inputs': ('box': $borders ),
+  'text-fields': ('filled': $borders,
     'filled-hover': $borders,
     'outlined': $borders,
     'outlined-disabled': $borders,
-    'outlined-hover': $borders
-    ),
-  );
+    'outlined-hover': $borders ),
+);
 
 // Variables must come before the import
 $btn-letter-spacing: 2;

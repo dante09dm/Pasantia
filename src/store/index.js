@@ -8,9 +8,9 @@ export default new Vuex.Store({
 
   state: {
     token: null,
-    domicilios: [],
-    telefonos: [],
-    emails: [],
+    domicilio: '',
+    telefono: '',
+    email: '',
     user: '',
   },
   getters: {
@@ -22,9 +22,17 @@ export default new Vuex.Store({
       return state.user
     },
 
-    domicilios(state) {
-      return state.domicilios
-    }
+    domicilio(state) {
+      return state.domicilio
+    },
+
+    email(state) {
+      return state.email
+    },
+
+    telefono(state) {
+      return state.telefono
+    },
   },
   mutations: {
     setToken(state, payload) {
@@ -35,16 +43,16 @@ export default new Vuex.Store({
       state.user = user
     },
 
-    setDomicilios(state, domicilios) {
-      state.domicilios = domicilios
+    setDomicilio(state, domicilio) {
+      state.domicilio = domicilio
     },
 
-    setTelefonos(state, telefonos) {
-      state.telefonos = telefonos
+    setTelefono(state, telefono) {
+      state.telefono = telefono
     },
 
-    setEmails(state, emails) {
-      state.emails = emails
+    setEmail(state, email) {
+      state.email = email
     },
 
     logout(state) {
@@ -56,75 +64,69 @@ export default new Vuex.Store({
 
   },
 
-  /*     async getUser({ commit }, user) {
-        try {
-          const res = await axios('http://10.1.1.19:8084/getAfiliado', {
-            methods: 'POST',
-            headers: { 'Content-Type': 'aplication/json' },
-            body: JSON.stringify(user)
-          })
-          const json = await res.json()
-          commit('setUser', json.data)
-        } catch (error) {
-          console.log('Error: ', error)
-        }
-      },
-   */
-
   actions: {
     //llamar a API
-    async getUser({ commit }, user) {
-      let url = 'http://10.1.1.19:8084/getAfiliado';
-      let data = { "nroafi": user };
+    /*     async getUser({ commit }, user) {
+          let url = 'http://10.1.1.16:8084/getAfiliado';
+          let data = { "nroafi": 18 };
+    
+          axios({
+            method: 'post',
+            url: url,
+            withCredentials: false,
+            data: JSON.stringify(data),
+          })
+            .then(function (response) {
+              commit('setUser', response)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }, */
 
-      axios({
-        method: 'post', url: url, withCredentials: false, data: JSON.stringify(data)
-      })
-        .then(function (response) {
-          commit('setUser', response)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
 
     async getDomcilios({ commit }, domicilios) {
-      let url = 'http://10.1.1.19:8084/getDomicilioAfiliado'
-      let data = { "domicilio": domicilios }
-      axios({ method: 'POST', url, withCredentials: false, data: JSON.stringify(data) })
+      let url = 'http://10.1.1.16:8084/getDomicilioAfiliado'
+      let data = { "nroafi": 18 }
+      axios({
+        method: 'post',
+        url: url,
+        withCredentials: false,
+        data: JSON.stringify(data)
+      })
         .then(function (response) {
 
-          commit('setDomicilios', response)
+          commit('setDomicilio', response)
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-
-    async getTelefonos({ commit }, telefonos) {
-      let url = 'http://10.1.1.19:8084/getTelefonoAfiliado'
-      let data = { "telefono": telefonos }
-      axios({ method: 'POST', url, withCredentials: false, data: JSON.stringify(data) })
-        .then(function (response) {
-
-          commit('setTelefonos', response)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
-    async getEmails({ commit }, emails) {
-      let url = 'http://10.1.1.19:8084/getEmailAfiliado'
-      let data = { "email": emails }
-      axios({ method: 'POST', url, withCredentials: false, data: JSON.stringify(data) })
-        .then(function (response) {
-
-          commit('setEmails', response)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
+    /*
+        async getTelefonos({ commit }, telefonos) {
+          let url = 'http://10.1.1.16:8084/getTelefonoAfiliado'
+          let data = { "nroafi": 18 }
+          axios({ method: 'post', url: url, withCredentials: false, data: JSON.stringify(data) })
+            .then(function (response) {
+    
+              commit('setTelefono', response)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
+        async getEmails({ commit }, emails) {
+          let url = 'http://10.1.1.16:8084/getEmailAfiliado'
+          let data = { "nroafi": 18 }
+          axios({ method: 'post', url: url, withCredentials: false, data: JSON.stringify(data) })
+            .then(function (response) {
+    
+              commit('setEmail', response)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }, */
 
     getToken({ commit }) {
       if (localStorage.getItem('token')) {

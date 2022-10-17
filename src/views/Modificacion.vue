@@ -2,10 +2,10 @@
     <div>
         <v-row>
             <v-col>
-                <v-card flat>
+                <v-card>
                     <v-card-title>
                         <h4>
-                            Modificacion de datos de afiliado: {{ this.last_name }}, {{ this.first_name }}
+                            {{titulo}}
                         </h4>
                     </v-card-title>
                     <v-tabs v-model="tab">
@@ -15,14 +15,14 @@
                         </v-tab>
                     </v-tabs>
 
-                        <v-tabs-items class="pa-2" v-model="tab">
-                            <v-tab-item v-for="item in items" :key="item.id">
-                                <component v-bind:is="item.content"></component>
-                            </v-tab-item>
-                        </v-tabs-items>
+                    <v-tabs-items class="pa-2" v-model="tab">
+                        <v-tab-item v-for="item in items" :key="item.id">
+                            <component v-bind:is="item.content"></component>
+                        </v-tab-item>
+                    </v-tabs-items>
 
                     <div>
-                        <v-btn class="ma-3" color="error">Validar campos</v-btn>
+                        <v-spacer></v-spacer>
                         <v-btn class="ma-3" color="info">Actualizar datos</v-btn>
                     </div>
                 </v-card>
@@ -55,7 +55,7 @@ export default {
             ],
         }
     },
-    mounted(){
+    mounted() {
     },
     computed: {
         ...mapGetters(['user'])
