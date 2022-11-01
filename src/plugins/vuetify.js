@@ -7,14 +7,15 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
   theme: {
-      options: {
-        customProperties: false,
-      },
+    options: {
+      customProperties: false,
+    },
     themes: {
       light: {
         primary: '#00A0DF',
         secondary: '#424242',
         accent: '#82B1FF',
+        complementary: 'df3f00',
         error: '#df0000',
         info: '#2196F3',
         success: '#00df7d',
@@ -26,8 +27,8 @@ export default new Vuetify({
     },
   },
   lang: {
-      locales: { es },
-      current: 'es',
+    locales: { es },
+    current: 'es',
   },
   icons: {
     iconfont: 'mdi', // default - only for display purposes

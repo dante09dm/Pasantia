@@ -7,15 +7,16 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
-  devServer: { proxy: {
+  devServer: {
+    proxy: {
       '^/api': {
-        target: (process.env.NODE_ENV === "production") ? 
-        'https://repdf.cajapsipba.org.ar/'
-        : 'https://repdf-dev.cajapsipba.org.ar/',
+        target: (process.env.NODE_ENV === "production") ?
+          'https://repdf.cajapsipba.org.ar/'
+          : 'https://repdf-dev.cajapsipba.org.ar/',
         ws: true,
         changeOrigin: true
-        }
-      },
-      disableHostCheck: true
-    }
+      }
+    },
+    disableHostCheck: true
+  }
 }

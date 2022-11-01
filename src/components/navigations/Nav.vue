@@ -1,13 +1,13 @@
 <template>
     <div>
         <v-app-bar app flat class="overflow-hidden" dark color="primary">
-            <v-app-bar-nav-icon v-if="$vuetify.breakpoint.mdAndDown" @click="drawer=!drawer" />
-            <v-toolbar-title>Caja de Psicologos</v-toolbar-title>
+            <v-app-bar-nav-icon v-if="$vuetify.breakpoint.mdAndDown" @click="drawer = !drawer" />
             <v-spacer></v-spacer>
 
         </v-app-bar>
         <v-navigation-drawer app dark color="primary" v-model="drawer">
-            <v-sheet color="primary" flat height="56">
+            <v-sheet color="primary" flat>
+                <v-img class="ma-3" src="@/assets/Logo-bt-06.png" />
             </v-sheet>
             <v-list>
                 <v-list-item-group @click="toggle" v-model="group">
@@ -21,7 +21,7 @@
             </v-list>
             <template v-slot:append>
                 <div class="pa-2">
-                    <v-btn v-if="isAuthenticated" @click="cerrarSesion" block dark>
+                    <v-btn block dark>
                         cerrar sesion
                     </v-btn>
                 </div>
@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex';
+
 
 export default {
     data() {
@@ -39,19 +39,17 @@ export default {
             toggle: false,
             drawer: true,
             items: [
-                { title: 'Notificaciones', icon: 'mdi-bell', route: '/notificaciones' },
-                { title: 'Perfil', icon: 'mdi-view-dashboard', route: '/dashboard' },
-                { title: 'Boletas', icon: 'mdi-printer', route: '/Boletas' },
-                { title: 'Turnos', icon: 'mdi-ticket-account', route: '/Turnos' },
+                { title: 'Turnos', icon: 'mdi-ticket-account', route: '/' },
             ],
+
         }
 
     },
     computed: {
-        ...mapGetters(['user', 'isAuthenticated'])
+
     },
     methods: {
-        ...mapActions(['cerrarSesion'])
+
 
     },
 

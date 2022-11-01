@@ -1,15 +1,23 @@
-.app{
-  margin-left: 2rem !important;
+.app {
+  margin-left: 0rem !important;
   transform: scale(0.95) !important;
-  transform-origin: left !important;
+  transform-origin: center !important;
 }
 
-.v-text-field--filled.v-input--dense.v-text-field--single-line > .v-input__control > .v-input__slot, .v-text-field--filled.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--filled.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot, .v-text-field--full-width.v-input--dense.v-text-field--single-line > .v-input__control > .v-input__slot, .v-text-field--full-width.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--full-width.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot, .v-text-field--outlined.v-input--dense.v-text-field--single-line > .v-input__control > .v-input__slot, .v-text-field--outlined.v-input--dense.v-text-field--outlined > .v-input__control > .v-input__slot, .v-text-field--outlined.v-input--dense.v-text-field--outlined.v-text-field--filled > .v-input__control > .v-input__slot {
-    height: 30px !important;
-    min-height: 30px !important;
+.v-text-field--filled.v-input--dense.v-text-field--single-line>.v-input__control>.v-input__slot,
+.v-text-field--filled.v-input--dense.v-text-field--outlined>.v-input__control>.v-input__slot,
+.v-text-field--filled.v-input--dense.v-text-field--outlined.v-text-field--filled>.v-input__control>.v-input__slot,
+.v-text-field--full-width.v-input--dense.v-text-field--single-line>.v-input__control>.v-input__slot,
+.v-text-field--full-width.v-input--dense.v-text-field--outlined>.v-input__control>.v-input__slot,
+.v-text-field--full-width.v-input--dense.v-text-field--outlined.v-text-field--filled>.v-input__control>.v-input__slot,
+.v-text-field--outlined.v-input--dense.v-text-field--single-line>.v-input__control>.v-input__slot,
+.v-text-field--outlined.v-input--dense.v-text-field--outlined>.v-input__control>.v-input__slot,
+.v-text-field--outlined.v-input--dense.v-text-field--outlined.v-text-field--filled>.v-input__control>.v-input__slot {
+  height: 30px !important;
+  min-height: 30px !important;
 }
 
-.panelSencha{
+.panelSencha {
   padding: 0.5rem !important;
   background: #FFFFFF !important;
   width: 64rem !important;
@@ -17,36 +25,36 @@
   min-height: 31.25rem !important;
 }
 
-.my-column{
-  padding: 2px !important ; 
-  margin: 0px !important ;
+.my-column {
+  padding: 0px !important;
+  margin: 0px !important;
 }
 
-.input-text-sencha{
-    height: 1.8rem !important;
-    line-height: .5rem !important;
+.input-text-sencha {
+  height: 1.8rem !important;
+  line-height: .5rem !important;
 }
 
 
-.border{
+.border {
   border: solid 1.5px #d1d0d0 !important;
 }
 
-.border-top{
+.border-top {
   border-top: solid 1px #d1d0d0 !important;
 }
 
-label{
+label {
   margin-right: .1rem !important;
-  color:  #C9C9C9 !important;
+  color: #C9C9C9 !important;
 }
 
-.content{
-    display: block !important;
-    color:  #000 !important;
+.content {
+  display: block !important;
+  color: #000 !important;
 }
 
 
-.v-text-field--enclosed.v-input--dense:not(.v-text-field--solo).v-text-field--outlined .v-input__append-inner{
+.v-text-field--enclosed.v-input--dense:not(.v-text-field--solo).v-text-field--outlined .v-input__append-inner {
   margin-top: 3px !important;
 }

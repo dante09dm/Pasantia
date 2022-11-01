@@ -1,13 +1,24 @@
 <template>
-    <v-card>
-        <v-card-title primary-title>
-            Solicitar turnos
-        </v-card-title>
-        <v-card-text>
-            bla bla bla blabla blabla blabla blabla blabla blabla bla
-        </v-card-text>
-    </v-card>
-
+  <div>
+      <!--En esta vista se debe realizar el turnero-->
+      <Fecha></Fecha>
+      <Horario></Horario>
+  </div>
 </template>
 <script>
+import Fecha from '@/components/ejemplos/Fecha.vue';
+import Horario from '@/components/ejemplos/Horario.vue';
+
+export default {
+  components: {
+      Fecha,
+      Horario,
+  },
+  data() {
+      return {
+          title: 'Turnos'
+      }
+  },
+
+}
 </script>
