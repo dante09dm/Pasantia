@@ -1,7 +1,6 @@
 
 <template>
   <div>
-    <h2 class="text-center mt-4 mb-6" >Seleccionar Horario</h2>
   <v-row
 
     justify="space-around"

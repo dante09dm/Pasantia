@@ -1,6 +1,5 @@
 <template>
   <div>
-      <h2 class="text-center mt-2" >Seleccionar fecha</h2>
 <v-row align="center">
   <v-date-picker
     v-model="date"
